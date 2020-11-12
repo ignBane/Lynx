@@ -1,0 +1,29 @@
+{
+   "status": 200,
+   "message": "Everything should work fine",
+   "data": {
+      "messages": [
+         {
+            "title": "Marvel Knockout",
+            "body": "A full trio party is required to compete in this Cup."
+         },
+         {
+            "title": "Item Disabled",
+            "body": "Due to an issue, we've temporarily disabled the following cosmetic item: Bash Burner"
+         },
+         {
+            "title": "Item Disabled",
+            "body": "Due to an issue, we've temporarily disabled the following cosmetic item: Bash Burner"
+         },
+         {
+            "title": "Item Disabled",
+            "body": "Due to an issue, we've temporarily disabled the following cosmetic item: Bash Burner"
+         }
+      ],
+      "platform_messages": {
+         "EU": [],
+         "NA": []
+      },
+      "region_messages": {}
+   }
+}

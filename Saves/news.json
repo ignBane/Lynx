@@ -1,0 +1,48 @@
+{
+   "status": 200,
+   "data": {
+      "hash": "6279effb2e5fd5e3bb95c302199ccda79693183d",
+      "date": "2020-11-12T14:04:10Z",
+      "image": "https://cdn.fortnite-api.com/news/v2/6279effb2e5fd5e3bb95c302199ccda79693183d.gif",
+      "motds": [
+         {
+            "id": "X-Force Outfit Bundle links to Item Shop",
+            "title": "X-Force Outfit Bundle",
+            "tabTitle": "Marvel Items Return",
+            "body": "Powered by a shrouded past, a twisted future, and a whole lot of luck.",
+            "image": "https://cdn2.unrealengine.com/Fortnite/fortnite-game/battleroyalenews/1240/12BR_Force_Character_Bundle_MOTD_1920x1080-1920x1080-039bafd274c04c2ecfa8032d170c5007ac773234.jpg",
+            "tileImage": "https://cdn2.unrealengine.com/Fortnite/fortnite-game/battleroyalenews/1240/12BR_Force_Character_Bundle_MOTD_1024x512-1024x512-1863e2b282800932fd51c6087c88b7df8cb6f478.jpg",
+            "sortingPriority": 70,
+            "hidden": false
+         },
+         {
+            "id": "XP Xtravaganza Week 2",
+            "title": "XP Xtravaganza Week 2",
+            "tabTitle": "New Challenges",
+            "body": "Get the crew together and take on these party-wide challenges to finish out the Battle Pass strong!",
+            "image": "https://cdn2.unrealengine.com/14br-xp-week2-motd-1920x1080-1920x1080-504567401.jpg",
+            "tileImage": "https://cdn2.unrealengine.com/14br-xp-week2-motd-1024x512-1024x512-504567394.jpg",
+            "sortingPriority": 50,
+            "hidden": false
+         },
+         {
+            "id": "Disney+ x Fortnite Launch",
+            "title": "POWER UP WITH DISNEY+",
+            "tabTitle": null,
+            "body": "Get the squad together, sit back, and watch epic battles unfold with two months of Disney+ on us when you purchase V-Bucks, or make any real money purchase in the Item Shop, through December 31, 2020. New Disney+ subscribers aged 18+ only. Select countries only, offer varies by territory. Learn more at fortnite.com/disneyplus",
+            "image": "https://cdn2.unrealengine.com/fn-disney-motd-1920x1080-1920x1080-504628040.jpg",
+            "tileImage": "https://cdn2.unrealengine.com/fn-disney-motd-1024x512-1024x524-504628029.jpg",
+            "sortingPriority": 20,
+            "hidden": false
+         }
+      ],
+      "messages": [
+         {
+            "title": "Keep Your Account Secure",
+            "body": "Avoid scam sites offering free V-Bucks. Epic will never ask for your password. Enable Two-Factor Authentication to help stay secure!",
+            "image": "https://cdn2.unrealengine.com/Fortnite/fortnite-game/battleroyalenews/v42/BR04_MOTD_Shield-1024x512-75eacc957ecc88e76693143b6256ba06159efb76.jpg",
+            "adspace": null
+         }
+      ]
+   }
+}

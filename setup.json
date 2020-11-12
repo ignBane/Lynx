@@ -1,0 +1,10 @@
+{
+    "token":"TOKEN HERE",
+    "prefix":".",
+    "api-key":"Fortnite API Key Here (If Not Leave Default)",
+    "news-channel":"channel_id_here",
+    "shop-channel":"channel_id_here",
+    "tournamnet-channel":"channel_id_here",
+    "build-channel":"channel_id_here",
+    "notices-channel": "channel_id_here"
+}
