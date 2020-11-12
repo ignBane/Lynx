@@ -9,6 +9,6 @@ Fortnite Leaking Discord Bot.
 
 # Used API'S
 
-https://api.peely.de/ 
+https://api.peely.de/ <br/>
 https://fortnite-api.com/
 
