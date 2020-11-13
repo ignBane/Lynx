@@ -1,6 +1,9 @@
 # Lynx
 Fortnite Leaking Discord Bot.
 
+# Info
+If your going to use this code, please give credit **don't skid**
+
 # Features
 - Auto News | Sends the new live news as a gif everytime it changes.
 - Auto Shop | Sends the new live itemshop everytime it changes.
