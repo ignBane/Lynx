@@ -2,7 +2,7 @@
 Fortnite Leaking Discord Bot.
 
 # Info
-If your going to use this code, please give credit **don't skid**
+If your going to use this code, please give credit **don't just steal**
 
 # Features
 - Auto News | Sends the new live news as a gif everytime it changes.
