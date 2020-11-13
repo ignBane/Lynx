@@ -1,6 +1,7 @@
-import requests, json, discord, datetime
+import requests, json, discord, datetime, asyncio
 from discord.ext import commands
 from discord.ext import tasks
+from discord.utils import get
 
 x = datetime.datetime.now()
 
@@ -51,11 +52,8 @@ async def autoshopbr():
     response=requests.get('https://api.peely.de/v1/shop').json()
     if response != old:
         channel = bot.get_channel(config['shop-channel'])
-        embed=discord.Embed(
-            title=f'{response["time"]}',
-        )
-        embed.set_image(url=response['uniqueurl'])
-        await channel.send(embed=embed)
+        await channel.send(response['time'])
+        await channel.send(response['uniqueurl'])
     with open('Saves/shop.json', 'w') as file:
         json.dump(response, file, indent=3)
 
@@ -154,4 +152,84 @@ async def on_ready():
     autotournament.start()
     autonotices.start()
 
-bot.run(config["token"])
+@bot.command()
+async def stats(ctx, arg):
+  r = requests.get(f'https://fortnite-api.com/v1/stats/br/v2?name={arg}&image=all')
+  rr = r.json()
+  embed=discord.Embed()
+  embed.set_image(url=f"{rr['data']['image']}")
+  await ctx.send(embed=embed)
+
+@bot.command()
+async def brnews(ctx):
+    response=requests.get(
+        'https://fortnite-api.com/v2/news/br'
+    ).json()
+    embed=discord.Embed(
+        title='Br News'
+    )
+    embed.set_image(
+        url=response['data']['image']
+    )
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def creativenews(ctx):
+    response=requests.get(
+        'https://fortnite-api.com/v2/news/creative'
+    ).json()
+    embed=discord.Embed(
+        title='Creative News'
+    )
+    embed.set_image(
+        url=response['data']['image']
+    )
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def stwnews(ctx):
+    response=requests.get(
+        'https://api.peely.de/v1/stw/news'
+    ).json()
+    embed=discord.Embed(
+        title='Save The World News'
+    )
+    embed.set_image(
+        url=response['data']['image']
+    )
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def search(ctx, cosnamee):
+  r = requests.get(f'https://fortnite-api.com/v2/cosmetics/br/search/all?name={cosnamee}')
+  rr = r.json()
+  if rr['status'] == 200:
+    for sub_dict in rr['data']:
+      embed = discord.Embed(color=0x0d95fd)
+      embed.add_field(name='Name', value=f"``{sub_dict['name']}``", inline=False)
+      embed.add_field(name='ID', value=f"``{sub_dict['id']}``", inline=False)
+      embed.add_field(name='Rarity', value=f"``{sub_dict['description']}``", inline=False)
+      embed.add_field(name='Type', value=f"``{sub_dict['type']['value']}``", inline=False)
+      embed.add_field(name='Display Type', value=f"``{sub_dict['type']['displayValue']}``", inline=False)
+      embed.add_field(name='Backend Value', value=f"``{sub_dict['type']['backendValue']}``", inline=False)
+      embed.add_field(name='Rarity', value=f"``{sub_dict['rarity']['value']}``", inline=False)
+      embed.add_field(name='Backend Rarity', value=f"``{sub_dict['rarity']['backendValue']}``", inline=False)
+      embed.add_field(name='Series', value=f"``{sub_dict['series']}``", inline=False)
+      if sub_dict['introduction'] == None:
+        pass
+      else:
+        embed.add_field(name='Introduction', value=f"``{sub_dict['introduction']['text']}``", inline=False)
+        embed.add_field(name='Display Asset Path', value=f"``{sub_dict['displayAssetPath']}``", inline=False)
+        embed.add_field(name='Definition Path', value=f"``{sub_dict['definitionPath']}``", inline=False)
+        embed.set_thumbnail(url=f"https://fortnite-api.com/images/cosmetics/br/{sub_dict['id'].lower()}/icon.png")
+        embed.set_footer(text=f"{bot.user.name} | Made By Bane#9999", icon_url='https://media.fortniteapi.io/images/9322d17f0c849c8d1859753ef237c669/transparent.png')
+        message = await ctx.send(embed=embed)
+  else:
+    embed = discord.Embed(color=0xff0f0f)
+    embed.add_field(name='Error', value=f"``{rr['error']}``", inline=False)
+    embed.set_footer(text=f"{bot.user.name} | Made By Bane#9999", icon_url='https://media.fortniteapi.io/images/9322d17f0c849c8d1859753ef237c669/transparent.png')
+    message = await ctx.send(embed=embed)
+    await asyncio.sleep(60)
+    await message.delete()
+
+bot.run(config["token"], reconnect=True)

@@ -1,10 +1,11 @@
 {
-    "token":"TOKEN HERE",
-    "prefix":".",
-    "api-key":"Fortnite API Key Here (If Not Leave Default)",
-    "news-channel":"channel_id_here",
-    "shop-channel":"channel_id_here",
-    "tournamnet-channel":"channel_id_here",
-    "build-channel":"channel_id_here",
-    "notices-channel": "channel_id_here"
+    "token":"NzU5NjM3NDU3MjQ2NzQ4NzEy.X3AZgw.nYGLcxZJJ01xD9SEz1xjlqx1LN8",
+    "prefix":"-",
+    "api-key":"3fce7f946d89e193c12657018994b5b0a6757aca",
+    "news-channel":752065158343557204,
+    "shop-channel":762298999603724311,
+    "tournamnet-channel":770375914591617024,
+    "build-channel":752065158343557208,
+    "notices-channel": 752065158343557204,
+    "itemshop-text":"FortLeaks"
 }
