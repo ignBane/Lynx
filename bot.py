@@ -62,6 +62,7 @@ async def taskbrnews():
                       json.dump(response, file, indent=3)
     except Exception as e:
       print("ERROR! Woah that wasn't supposed to happen " + e)
+      pass
 
 @tasks.loop(seconds=10)
 async def autoshopbr():
