@@ -33,32 +33,35 @@ async def aes(ctx):
 async def taskbrnews():
     with open('Saves/news.json', 'r') as file:
         old = json.load(file)
-    if apikey == True:
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://fortnite-api.com/v2/news/br", headers={"Authorization":config["api-key"]}) as r:
-                response = await r.json()
-                if response != old:
-                    channel = bot.get_channel(config['news-channel'])
-                    embed=discord.Embed(
-                        title='Br News',
-                    )
-                    embed.set_image(url=response['data']['image'])
-                    await channel.send(embed=embed)
-                with open('Saves/news.json', 'w') as file:
-                    json.dump(response, file, indent=3)
-    else:
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://fortnite-api.com/v2/news/br") as r:
-                response = await r.json()
-                if response != old:
-                    channel = bot.get_channel(config['news-channel'])
-                    embed=discord.Embed(
-                        title='Br News',
-                    )
-                    embed.set_image(url=response['data']['image'])
-                    await channel.send(embed=embed)
-                with open('Saves/news.json', 'w') as file:
-                    json.dump(response, file, indent=3)
+    try:
+      if apikey == True:
+          async with aiohttp.ClientSession() as session:
+              async with session.get("https://fortnite-api.com/v2/news/br", headers={"Authorization":config["api-key"]}) as r:
+                  response = await r.json()
+                  if response != old:
+                      channel = bot.get_channel(config['news-channel'])
+                      embed=discord.Embed(
+                          title='Br News',
+                      )
+                      embed.set_image(url=response['data']['image'])
+                      await channel.send(embed=embed)
+                  with open('Saves/news.json', 'w') as file:
+                      json.dump(response, file, indent=3)
+      else:
+          async with aiohttp.ClientSession() as session:
+              async with session.get("https://fortnite-api.com/v2/news/br") as r:
+                  response = await r.json()
+                  if response != old:
+                      channel = bot.get_channel(config['news-channel'])
+                      embed=discord.Embed(
+                          title='Br News',
+                      )
+                      embed.set_image(url=response['data']['image'])
+                      await channel.send(embed=embed)
+                  with open('Saves/news.json', 'w') as file:
+                      json.dump(response, file, indent=3)
+    except Exception as e:
+      print("ERROR! Woah that wasn't supposed to happen " + e)
 
 @tasks.loop(seconds=10)
 async def autoshopbr():
