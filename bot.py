@@ -122,7 +122,7 @@ async def autotournament():
                 if data.status_code != 200:
                     print(data.status_code + ' Requests Received From api.peely.de/v1/tournaments')
             except:
-                return
+                pass
             if new["data"]["tournaments"] != Cached["data"]["tournaments"]:
                 for i in new["data"]["tournaments"]:
                     if i not in Cached["data"]["tournaments"]:
