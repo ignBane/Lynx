@@ -64,30 +64,6 @@ async def taskbrnews():
       print("ERROR! Woah that wasn't supposed to happen " + e)
       pass
 
-@tasks.loop(seconds=30)
-async def autoshopbr():
-    with open('Saves/shop.json', 'r') as file:
-        old = json.load(file)
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://api.peely.de/v1/shop") as r:
-                response = await r.json()
-                if response != old:
-                    channel = bot.get_channel(config['shop-channel'])
-                    await channel.send(response['time'])
-                    await channel.send(response['uniqueurl'])
-                with open('Saves/shop.json', 'w') as file:
-                    json.dump(response, file, indent=3)
-    except:
-        async with aiohttp.ClientSession() as session:
-            async with session.get("https://api.peely.de/v1/shop") as r:
-                response = await r.json()
-                if response != old:
-                    channel = bot.get_channel(config['shop-channel'])
-                    await channel.send(response['time'])
-                    await channel.send(response['uniqueurl'])
-                with open('Saves/shop.json', 'w') as file:
-                    json.dump(response, file, indent=3)
 
 @tasks.loop(seconds=30)
 async def autobuild():
