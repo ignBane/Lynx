@@ -29,7 +29,7 @@ async def aes(ctx):
       embed.set_footer(text=f'{ctx.guild.name}', icon_url=f'{ctx.guild.icon_url}')
   await ctx.send(embed=embed)
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=30)
 async def taskbrnews():
     with open('Saves/news.json', 'r') as file:
         old = json.load(file)
@@ -64,7 +64,7 @@ async def taskbrnews():
       print("ERROR! Woah that wasn't supposed to happen " + e)
       pass
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=30)
 async def autoshopbr():
     with open('Saves/shop.json', 'r') as file:
         old = json.load(file)
@@ -89,7 +89,7 @@ async def autoshopbr():
                 with open('Saves/shop.json', 'w') as file:
                     json.dump(response, file, indent=3)
 
-@tasks.loop(seconds=10)
+@tasks.loop(seconds=30)
 async def autobuild():
     with open('Saves/build.json', 'r') as file:
         old = json.load(file)
@@ -111,75 +111,6 @@ async def autobuild():
             with open('Saves/build.json', 'w') as file:
                 json.dump(status, file, indent=3)
 
-@tasks.loop(seconds=10)
-async def autotournament():
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://api.peely.de/v1/tournaments") as data:
-            new = await data.json()
-            try:
-                with open('Saves/tournament.json', 'r') as file:
-                    Cached = json.load(file)
-                if data.status_code != 200:
-                    print(data.status_code + ' Requests Received From api.peely.de/v1/tournaments')
-            except:
-                pass
-            if new["data"]["tournaments"] != Cached["data"]["tournaments"]:
-                for i in new["data"]["tournaments"]:
-                    if i not in Cached["data"]["tournaments"]:
-                        name = i["name"]
-                        short_description = i["description"]
-                        image = i['image']
-                        try:
-                            channel = bot.get_channel(config["tournamnet-channel"])
-                            embed=discord.Embed(title=f'{name}', description=f'{short_description}')
-                            embed.set_image(url=f'{image}')
-                            await channel.send(embed=embed)
-                        except:
-                            channel = bot.get_channel(config["tournamnet-channel"])
-                            embed=discord.Embed(title=f'{name}', description=f'{short_description}')
-                            embed.set_image(url=f'{image}')
-                            await channel.send(embed=embed)
-            with open('Saves/tournament.json', 'w') as file:
-                json.dump(new, file, indent=3)
-            
-@tasks.loop(seconds=10)
-async def autonotices():
-    with open('Saves/notices.json', 'r') as file:
-        old = json.load(file)
-    async with aiohttp.ClientSession() as session:
-        async with session.get("https://api.peely.de/v1/notices") as data:
-            response=await data.json()
-            try:
-                    if response != old:
-                        if response['status'] == 200:
-                            for sub_dict in response['data']['messages']:
-                                channel = bot.get_channel(config['notices-channel'])
-                                embed=discord.Embed(title="Notice Changed ", color=0xff0000)
-                                embed.add_field(name=f"{sub_dict['title']}", value=f"{sub_dict['body']}", inline=True)
-                                await channel.send(embed=embed)
-                        else:
-                            channel = bot.get_channel(config['notices-channel'])
-                            embed=discord.Embed(title="Notice Changed", color=0xff0000)
-                            embed.add_field(name=f"???", value=f"???", inline=True)
-                            await channel.send(embed=embed)
-                    with open('Saves/notices.json', 'w') as file:
-                        json.dump(response, file, indent=3)
-            except:
-                    if response != old:
-                        if response != old:
-                            if response['status'] == 200:
-                                for sub_dict in response['data']['messages']:
-                                    channel = bot.get_channel(config['notices-channel'])
-                                    embed=discord.Embed(title="Notice Changed ", color=0xff0000)
-                                    embed.add_field(name=f"{sub_dict['title']}", value=f"{sub_dict['body']}", inline=True)
-                                    await channel.send(embed=embed)
-                            else:
-                                channel = bot.get_channel(config['notices-channel'])
-                                embed=discord.Embed(title="Notice Changed", color=0xff0000)
-                                embed.add_field(name=f"???", value=f"???", inline=True)
-                                await channel.send(embed=embed)
-                        with open('Saves/notices.json', 'w') as file:
-                            json.dump(response, file, indent=3)
 @bot.event
 async def on_ready():
     print('Bot Ready/Logged In')
@@ -190,8 +121,6 @@ async def on_ready():
     taskbrnews.start()
     autoshopbr.start()
     autobuild.start()
-    autotournament.start()
-    autonotices.start()
 
 @bot.command()
 async def stats(ctx, arg):
